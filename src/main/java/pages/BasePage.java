@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.FileHelper;
 import helpers.TestHelpers;
 import locators.BasePageLocators;
 import org.openqa.selenium.By;
@@ -25,6 +26,6 @@ public class BasePage {
     public void closeCookies(WebDriver driver){
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("onetrust-accept-btn-handler"))));
         driver.findElement(By.id("onetrust-accept-btn-handler")).click();
-        System.out.println("Cookies closed");
+        FileHelper.writeToFile("Cookies closed");
     }
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.FileHelper;
 import helpers.TestHelpers;
 import locators.SearchResultLocators;
 import org.openqa.selenium.WebDriver;
@@ -22,12 +23,15 @@ public class SearchResultPage {
     }
 
     public String getPageTitle(){
+        FileHelper.writeToFile("Current page title: " + driver.getTitle());
         return driver.getTitle();
+
     }
 
-    public void closePopUp(){
+    public void closeModal(){
         wait.equals(ExpectedConditions.elementToBeClickable(searchResultLocators.getCloseModal()));
         TestHelpers.clickOnElement(searchResultLocators.getCloseModal());
+        FileHelper.writeToFile("Modal window closed");
     }
 
 }

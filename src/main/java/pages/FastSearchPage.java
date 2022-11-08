@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.FileHelper;
 import helpers.TestHelpers;
 import locators.FastSearchLocators;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,7 @@ public class FastSearchPage {
         TestHelpers.clickOnElement(fastSearchLocators.getEstateType());
         wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getEstateDropDownBox()));
         TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getEstateDropDownBox(), estate);
-        sleep();
+        FileHelper.writeToFile("Selected estate: "+ estate);
 
     }
 
@@ -34,6 +35,7 @@ public class FastSearchPage {
         TestHelpers.clickOnElement(fastSearchLocators.getTransactionType());
         wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getTransactionDropDownBox()));
         TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getTransactionDropDownBox(), transaction);
+        FileHelper.writeToFile("Selected transaction tyle: "+ transaction);
     }
 
     public void inputLocation(String location){
@@ -42,31 +44,38 @@ public class FastSearchPage {
         TestHelpers.sendTextToElement(fastSearchLocators.getLocationPicker(), location);
         wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getLocationPickerFirstSuggestion()));
         TestHelpers.clickOnElement(fastSearchLocators.getLocationPickerFirstSuggestion());
+        FileHelper.writeToFile("Selected location: " + location);
     }
 
     public void selectDistanceRadius (String distanceRadius){
         TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getDistanceRadius(), distanceRadius);
+        FileHelper.writeToFile("Selected distance Radius: "+ distanceRadius);
     }
 
     public void inputPriceMin(String priceMin){
         TestHelpers.sendTextToElementAndLooseFocus(fastSearchLocators.getPriceMin(), priceMin);
+        FileHelper.writeToFile("Entered minimum price: " + priceMin);
     }
 
     public void inputPriceMax(String priceMax){
         TestHelpers.sendTextToElementAndLooseFocus(fastSearchLocators.getPriceMax(), priceMax);
+        FileHelper.writeToFile("Entered maximum price: " + priceMax);
     }
 
     public void inputAreaMin(String areaMin){
         TestHelpers.sendTextToElementAndLooseFocus(fastSearchLocators.getAreaMin(), areaMin);
+        FileHelper.writeToFile("Entered minimum area: " + areaMin);
     }
 
     public void inputAreaMax(String areaMax){
         TestHelpers.sendTextToElementAndLooseFocus(fastSearchLocators.getAreaMax(), areaMax);
+        FileHelper.writeToFile("Entered maximum area: " + areaMax);
     }
 
     public void clickButton(){
         wait.until(ExpectedConditions.elementToBeClickable(fastSearchLocators.getSearchButton()));
         TestHelpers.clickOnElement(fastSearchLocators.getSearchButton());
+        FileHelper.writeToFile("Search button clicked");
     }
 
     private void sleep(){

@@ -1,3 +1,4 @@
+import helpers.FileHelper;
 import helpers.TestHelpers;
 import org.junit.After;
 import org.junit.Assert;
@@ -23,7 +24,8 @@ public class Testy {
 
     @Before
     public void setUp(){
-        System.out.println("Initializing ....");
+        FileHelper.createFile();
+        FileHelper.writeToFile("Initializing ....");
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.navigate().to("https://www.otodom.pl/");
@@ -36,7 +38,7 @@ public class Testy {
 
     @Test
     public void TC0001(){
-        System.out.println("Start TC0001");
+        FileHelper.writeToFile("Start TC0001");
         FastSearchPage fastSearchPage = new FastSearchPage(driver);
         fastSearchPage.selectEstate("Domy");
         fastSearchPage.inputLocation("Rembertów");
@@ -48,18 +50,19 @@ public class Testy {
         fastSearchPage.inputAreaMin("120");
 
         fastSearchPage.clickButton();
-        System.out.println("Search button clicked");
         TestHelpers.sleep(2);
 
         SearchResultPage searchResultPage = new SearchResultPage(driver);
-        System.out.println("Search Result page title: "+ searchResultPage.getPageTitle());
-        searchResultPage.closePopUp();
-        Assert.assertEquals("","Domy na sprzedaż - www.otodom.pl",driver.getTitle());
+        searchResultPage.closeModal();
+        Assert.assertEquals("","Domy nasprzedaż w Warszawa, Rembertow - www.otodom.pl",searchResultPage.getPageTitle());
+        FileHelper.writeToFile("Test TC0001 Passed");
     }
 
     @After
    public void tearDown(){
-   //     driver.quit();
+       FileHelper.writeToFile("Closing ....");
+       FileHelper.closeWriter();
+       driver.quit();
     }
 
 

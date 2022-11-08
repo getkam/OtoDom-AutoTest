@@ -1,0 +1,14 @@
+Initializing ....
+Cookies closed
+Start TC0001
+Selected estate: Domy
+Selected location: Rembertów
+Selected transaction tyle: Na sprzedaż
+Entered maximum price: 1400000
+Entered minimum price: 900000
+Entered maximum area: 300
+Entered minimum area: 120
+Search button clicked
+Modal window closed
+Current page title: Domy na sprzedaż w Warszawa, Rembertow - www.otodom.pl
+Closing ....

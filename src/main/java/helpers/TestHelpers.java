@@ -18,21 +18,21 @@ public class TestHelpers {
         action.moveToElement(element.findElement(By.xpath("//*[text()=\'"+expectedElement+"\']"))).click().perform();
     }
 
-    public static void clickOnElement(WebElement element) {element.click();}
+    public static void clickOnElement(WebElement element) {
+        element.click();
+    }
 
     public static void sendTextToElementAndLooseFocus(WebElement element, String expectedText){
         element.sendKeys(expectedText);
         element.sendKeys(Keys.TAB);
-        System.out.println("input: "+ expectedText);
     }
 
     public static void sendTextToElement(WebElement element, String expectedText){
         element.sendKeys(expectedText);
-        System.out.println("input: " + expectedText);
     }
 
-    public static void print(String line){
-        System.out.println(line);
+    public static void addToLog(String line){
+        FileHelper.writeToFile(line);
     }
 
     public static void sleep(int seconds){
