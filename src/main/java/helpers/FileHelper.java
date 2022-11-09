@@ -11,15 +11,9 @@ public class FileHelper {
     private static File file;
     private static FileWriter writer;
 
-    public static String getcurrentDate(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date date = new Date();
-        return dateFormat.format(date);
-
-    }
 
     public static void createFile(){
-        file = new File("src/main/logs/logs_"+getcurrentDate() + ".txt");
+        file = new File("src/main/logs/logs_"+ TestHelpers.getcurrentDate() + ".txt");
         try {
             writer = new FileWriter((file));
         } catch (IOException e) {

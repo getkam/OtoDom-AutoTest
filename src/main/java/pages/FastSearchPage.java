@@ -1,6 +1,7 @@
 package pages;
 
 import helpers.FileHelper;
+import helpers.ScreenShotHelper;
 import helpers.TestHelpers;
 import locators.FastSearchLocators;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +36,7 @@ public class FastSearchPage {
         TestHelpers.clickOnElement(fastSearchLocators.getTransactionType());
         wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getTransactionDropDownBox()));
         TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getTransactionDropDownBox(), transaction);
-        FileHelper.writeToFile("Selected transaction tyle: "+ transaction);
+        FileHelper.writeToFile("Selected transaction type: "+ transaction);
     }
 
     public void inputLocation(String location){

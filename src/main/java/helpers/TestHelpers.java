@@ -9,7 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class TestHelpers {
 
@@ -33,6 +36,13 @@ public class TestHelpers {
 
     public static void addToLog(String line){
         FileHelper.writeToFile(line);
+    }
+
+    public static String getcurrentDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        Date date = new Date();
+        return dateFormat.format(date);
+
     }
 
     public static void sleep(int seconds){

@@ -1,4 +1,5 @@
 import helpers.FileHelper;
+import helpers.ScreenShotHelper;
 import helpers.TestHelpers;
 import org.junit.After;
 import org.junit.Assert;
@@ -30,6 +31,7 @@ public class Testy {
         driver = new ChromeDriver();
         driver.navigate().to("https://www.otodom.pl/");
         driver.manage().window().maximize();
+        ScreenShotHelper screenShotHelper = new ScreenShotHelper(driver);
         BasePage basePage = new BasePage(driver); // closing cookies
         basePage.closeCookies(driver);
 
@@ -48,13 +50,14 @@ public class Testy {
         fastSearchPage.inputPriceMin("900000");
         fastSearchPage.inputAreaMax("300");
         fastSearchPage.inputAreaMin("120");
-
+        ScreenShotHelper.TakeScreenShot("TC0001");
         fastSearchPage.clickButton();
         TestHelpers.sleep(2);
 
         SearchResultPage searchResultPage = new SearchResultPage(driver);
         searchResultPage.closeModal();
-        Assert.assertEquals("","Domy nasprzedaż w Warszawa, Rembertow - www.otodom.pl",searchResultPage.getPageTitle());
+        ScreenShotHelper.TakeScreenShot("TC0001");
+        Assert.assertEquals("","Domy na sprzedaż w Rembertów, Warszawa, Mazowieckie - www.otodom.pl",searchResultPage.getPageTitle());
         FileHelper.writeToFile("Test TC0001 Passed");
     }
 
