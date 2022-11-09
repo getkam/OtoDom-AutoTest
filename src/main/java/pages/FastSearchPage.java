@@ -4,6 +4,7 @@ import helpers.FileHelper;
 import helpers.ScreenShotHelper;
 import helpers.TestHelpers;
 import locators.FastSearchLocators;
+import org.checkerframework.checker.index.qual.SubstringIndexBottom;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -16,6 +17,8 @@ public class FastSearchPage {
     WebDriver driver;
     WebDriverWait wait;
     FastSearchLocators fastSearchLocators;
+
+    private int numberOfSearchItems;
 
     public FastSearchPage(WebDriver driver){
         this.driver = driver;
@@ -75,10 +78,22 @@ public class FastSearchPage {
 
     public void clickButton(){
         wait.until(ExpectedConditions.elementToBeClickable(fastSearchLocators.getSearchButton()));
+        setNumberOfSearchItems(fastSearchLocators.getSearchButton().getText());
         TestHelpers.clickOnElement(fastSearchLocators.getSearchButton());
         FileHelper.writeToFile("Search button clicked");
     }
-
+    public void setNumberOfSearchItems(String buttonValue){
+        buttonValue= buttonValue.substring(7) ;
+        try{
+        numberOfSearchItems = Integer.parseInt(buttonValue);}
+        catch(Exception e){
+            FileHelper.writeToFile("Error while parsing <"+ buttonValue+"> into Integer");
+        }
+        FileHelper.writeToFile("Visible on search button number of findings: " + numberOfSearchItems);
+    }
+    public int getNumberOfSearchItems(){
+        return numberOfSearchItems;
+    }
     private void sleep(){
         try {
             Thread.sleep(4000);

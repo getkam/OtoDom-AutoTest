@@ -106,4 +106,5 @@ public class FastSearchLocators {
 
     public void setSearchButton(WebElement searchButton){this.searchButton = searchButton;};
 
+
 }

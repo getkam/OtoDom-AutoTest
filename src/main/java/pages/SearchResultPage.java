@@ -4,16 +4,19 @@ import helpers.FileHelper;
 import helpers.TestHelpers;
 import locators.SearchResultLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class SearchResultPage {
-    WebDriver driver;
-    WebDriverWait wait;
-    SearchResultLocators searchResultLocators;
+    private WebDriver driver;
+    private WebDriverWait wait;
+    private SearchResultLocators searchResultLocators;
+    private List<WebElement> listeningItems;
 
     public SearchResultPage(WebDriver driver){
         this.driver = driver;
@@ -32,6 +35,10 @@ public class SearchResultPage {
         wait.equals(ExpectedConditions.elementToBeClickable(searchResultLocators.getCloseModal()));
         TestHelpers.clickOnElement(searchResultLocators.getCloseModal());
         FileHelper.writeToFile("Modal window closed");
+    }
+
+    public int getNumberOfListeningItems(){
+        return searchResultLocators.getListeningItems().size();
     }
 
 }
