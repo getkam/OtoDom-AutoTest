@@ -1,4 +1,6 @@
+import enums.NavBarPrimaryMarketItems;
 import helpers.FileHelper;
+import enums.NavBarAdsItems;
 import helpers.ScreenShotHelper;
 import helpers.TestHelpers;
 import org.junit.After;
@@ -30,6 +32,7 @@ public class LandingPage {
         ScreenShotHelper screenShotHelper = new ScreenShotHelper(driver);
         BasePage basePage = new BasePage(driver); // closing cookies
         basePage.closeCookies(driver);
+
     }
 
     @Test
@@ -58,6 +61,7 @@ public class LandingPage {
     public void TC0002(){
         FileHelper.writeToFile("Start TC0002");
         FastSearchPage fastSearchPage = new FastSearchPage(driver);
+        BasePage basePage = new BasePage(driver);
         fastSearchPage.selectEstate("Domy");
         ScreenShotHelper.TakeScreenShot("TC0002");
         fastSearchPage.clickButton();
@@ -65,8 +69,24 @@ public class LandingPage {
         SearchResultPage searchResultPage = new SearchResultPage(driver);
         searchResultPage.closeModal();
         ScreenShotHelper.TakeScreenShot("TC0002");
-        assertThat(searchResultPage.getPageTitle()).contains("Domy na sprzedaż - www.otodom.pl");
+        assertThat(basePage.getPageTitle()).contains("Domy na sprzedaż - www.otodom.pl");
         FileHelper.writeToFile("Test TC0002 Passed");
+    }
+
+    @Test
+    public void TC0003(){
+        FileHelper.writeToFile("Start TC0003");
+        BasePage basePage = new BasePage(driver);
+        basePage.selectItemFromNavBarAds(NavBarAdsItems.APARTAMENTS_FOR_RENT);
+        assertThat(basePage.getPageTitle()).contains("Mieszkania na wynajem - www.otodom.pl");
+    }
+
+    @Test
+    public void TC0004(){
+        FileHelper.writeToFile("Start TC0004");
+        BasePage basePage = new BasePage(driver);
+        basePage.selectItemFromNavBarPrimaryMarkets(NavBarPrimaryMarketItems.TOP_DEVELOPERS);
+        assertThat(basePage.getPageTitle()).contains("Rynek pierwotny nieruchomości w Polsce");
     }
 
     @After

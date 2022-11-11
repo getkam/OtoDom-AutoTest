@@ -25,11 +25,7 @@ public class SearchResultPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10),Duration.ofSeconds(1));
     }
 
-    public String getPageTitle(){
-        FileHelper.writeToFile("Current page title: " + driver.getTitle());
-        return driver.getTitle();
 
-    }
 
     public void closeModal(){
         wait.equals(ExpectedConditions.elementToBeClickable(searchResultLocators.getCloseModal()));
