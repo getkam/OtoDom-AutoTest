@@ -36,15 +36,10 @@ public class SearchPageTests {
     @Test
     public void TC0101(){
         FileHelper.writeToFile("Start TC0101");
-        FastSearchPage fastSearchPage = new FastSearchPage(driver);
-        fastSearchPage.selectEstate("Domy");
-        fastSearchPage.clickButton();
-        TestHelpers.sleep(2);
-
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
-        searchResultPage.closeModal();
+        BasePage basePage = new BasePage(driver);
+        basePage.clickOnLogo();
+        assertThat(basePage.getPageTitle()).contains("Otodom: Ogłoszenia Nieruchomości, Mieszkania, Domy, Działki");
         ScreenShotHelper.TakeScreenShot("TC0101");
-
         FileHelper.writeToFile("Test TC0101 Passed");
     }
 

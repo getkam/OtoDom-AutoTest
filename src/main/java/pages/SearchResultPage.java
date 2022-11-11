@@ -29,8 +29,12 @@ public class SearchResultPage {
 
     public void closeModal(){
         wait.equals(ExpectedConditions.elementToBeClickable(searchResultLocators.getCloseModal()));
-        TestHelpers.clickOnElement(searchResultLocators.getCloseModal());
-        FileHelper.writeToFile("Modal window closed");
+        try {
+            TestHelpers.clickOnElement(searchResultLocators.getCloseModal());
+            FileHelper.writeToFile("Modal window closed");
+        }catch(Exception e){
+            FileHelper.writeToFile("No modal window displayed");
+        }
     }
 
     public int getNumberOfListeningItems(){

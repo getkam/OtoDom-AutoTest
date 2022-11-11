@@ -18,7 +18,7 @@ public class FastSearchPage {
     WebDriverWait wait;
     FastSearchLocators fastSearchLocators;
 
-    private int numberOfSearchItems;
+    private int numberOfSearchItems=-1;
 
     public FastSearchPage(WebDriver driver){
         this.driver = driver;
@@ -78,7 +78,7 @@ public class FastSearchPage {
 
     public void clickButton(){
         wait.until(ExpectedConditions.elementToBeClickable(fastSearchLocators.getSearchButton()));
-        setNumberOfSearchItems(fastSearchLocators.getSearchButton().getText());
+        if (fastSearchLocators.getSearchButton().getText()!="Wyszukaj") {setNumberOfSearchItems(fastSearchLocators.getSearchButton().getText());}
         TestHelpers.clickOnElement(fastSearchLocators.getSearchButton());
         FileHelper.writeToFile("Search button clicked");
     }

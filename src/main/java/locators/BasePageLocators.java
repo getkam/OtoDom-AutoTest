@@ -15,6 +15,13 @@ public class BasePageLocators {
 
     public void setCloseCookiesBtn(WebElement closeCookiesBtn){this.closeCookiesBtn = closeCookiesBtn;};
 
+    ////////////////////////////////////////////////////////////////////////////////  LOGO
+    @FindBy(xpath="//a[@href='/']")
+    private WebElement logoIcon;
+
+    public WebElement getLogoIcon(){return logoIcon;}
+
+    public void setLogoIcon(WebElement logoIcon){this.logoIcon = logoIcon;};
     ////////////////////////////////////////////////////////////////////////////////  Ogloszenia
     @FindBy(xpath="//*[@data-cy='navbar.menu.ads']")
     private WebElement navBarAds;

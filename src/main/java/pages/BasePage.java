@@ -51,4 +51,8 @@ public class BasePage {
         TestHelpers.clickOnElement(basePageLocators.getNavBarPrimaryMarketList().get(selectedOption.getIndex()));
     }
 
+    public void clickOnLogo (){
+        TestHelpers.clickOnElement(basePageLocators.getLogoIcon());
+    }
+
 }
