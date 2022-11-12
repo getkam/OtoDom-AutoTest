@@ -42,14 +42,14 @@ public class LandingPage {
         FastSearchPage fastSearchPage = new FastSearchPage(driver);
         BasePage basePage = new BasePage(driver);
         fastSearchPage.selectEstate("Domy");
-        ScreenShotHelper.TakeScreenShot("TC0002");
+        ScreenShotHelper.TakeScreenShot(TestName);
         fastSearchPage.clickButton();
         TestHelpers.sleep(2);
         SearchResultPage searchResultPage = new SearchResultPage(driver);
         searchResultPage.closeModal();
-        ScreenShotHelper.TakeScreenShot("TC0002");
+        ScreenShotHelper.TakeScreenShot(TestName);
         assertThat(basePage.getPageTitle()).contains("Domy na sprzedaż - www.otodom.pl");
-        FileHelper.writeToFile("Test TC0002 Passed");
+        FileHelper.writeToFile("Test "+ TestName +"Passed");
     }
 
     @Test
