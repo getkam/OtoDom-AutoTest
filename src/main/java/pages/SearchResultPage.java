@@ -22,7 +22,7 @@ public class SearchResultPage {
         this.driver = driver;
         searchResultLocators = new SearchResultLocators();
         PageFactory.initElements(driver,searchResultLocators);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10),Duration.ofSeconds(1));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10),Duration.ofSeconds(2));
     }
 
 
@@ -39,6 +39,27 @@ public class SearchResultPage {
 
     public int getNumberOfListeningItems(){
         return searchResultLocators.getListeningItems().size();
+    }
+
+    public void seeMap() {
+        TestHelpers.clickOnElement(searchResultLocators.getSeeMap());
+    }
+    public void closeMap() {
+        TestHelpers.clickOnElement(searchResultLocators.getCloseMap());
+    }
+
+    public void clickOnFirstCLuster() {
+        wait.until(ExpectedConditions.visibilityOf(searchResultLocators.getListOfClusters().get(0)));
+        TestHelpers.clickOnElement(searchResultLocators.getListOfClusters().get(0));
+        TestHelpers.sleep(1);
+    }
+    public boolean isMapDisplayed(){
+        wait.until(ExpectedConditions.visibilityOf(searchResultLocators.getMap()));
+       if (searchResultLocators.getMap().isDisplayed()) {return true;} else return false;
+    }
+    public boolean isMapClosed(){
+        wait.until(ExpectedConditions.visibilityOfAllElements(searchResultLocators.getListeningItems()));
+        if (searchResultLocators.getListeningItems().size()!=0) {return true;} else return false;
     }
 
 }

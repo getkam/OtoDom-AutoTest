@@ -17,9 +17,6 @@ public class SearchResultLocators {
         this.closeModal = closeModal;
     }
 
-    ;
-
-
     @FindBy(xpath = "//*[@data-cy='listing-item-link']")
     private List<WebElement> listeningItems;
 
@@ -29,4 +26,47 @@ public class SearchResultLocators {
     public void setListeningItems(List<WebElement> listeningItems) {
         this.listeningItems = listeningItems;
     }
+
+    @FindBy(xpath = "//*[@data-cy='search.listing-panel.go-to-map-button-listingPanel']")
+    private WebElement seeMap;
+
+    public WebElement getSeeMap() {
+        return seeMap;
+    }
+    public void setSeeMap(WebElement seeMap) {
+        this.seeMap = seeMap;
+    }
+
+    @FindBy(xpath = "//*[@data-cy='search.map.go-to-list-button-mapContainer']")
+    private WebElement closeMap;
+
+    public WebElement getCloseMap() {
+        return closeMap;
+    }
+    public void setCloseMap(WebElement closeMap) {
+        this.closeMap = closeMap;
+    }
+
+    @FindBy(xpath = "//*[@aria-label='Mapa']")
+    private WebElement Map;
+
+    public WebElement getMap() {
+        return Map;
+    }
+    public void setMap(WebElement Map) {
+        this.Map  = Map;
+    }
+
+    @FindBy(xpath = "//*[@aria-label='Mapa']/descendant::*[@role='button']")
+    private List<WebElement> listOfClusters;
+
+    public List<WebElement> getListOfClusters() {
+        return listOfClusters;
+    }
+    public void setListOfClusters(List<WebElement> listOfClusters) {
+        this.listOfClusters = listOfClusters;
+    }
+
+
 }
+

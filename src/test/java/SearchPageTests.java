@@ -17,6 +17,7 @@ public class SearchPageTests {
 
     WebDriver driver;
     WebDriverWait wait;
+    String TestName;
 
     @Before
     public void setUp(){
@@ -29,18 +30,39 @@ public class SearchPageTests {
         ScreenShotHelper screenShotHelper = new ScreenShotHelper(driver);
         BasePage basePage = new BasePage(driver); // closing cookies
         basePage.closeCookies(driver);
-
-
     }
 
     @Test
-    public void TC0101(){
-        FileHelper.writeToFile("Start TC0101");
+    public void ClickOnLogo(){
+        TestName = "SearchPage_ClickOnLogo";
+        FileHelper.writeToFile("Start test: "+ TestName);
         BasePage basePage = new BasePage(driver);
         basePage.clickOnLogo();
-        assertThat(basePage.getPageTitle()).contains("Otodom: Ogłoszenia Nieruchomości, Mieszkania, Domy, Działki");
-        ScreenShotHelper.TakeScreenShot("TC0101");
-        FileHelper.writeToFile("Test TC0101 Passed");
+        assertThat(driver.getCurrentUrl()).isEqualTo("https://www.otodom.pl/");
+        ScreenShotHelper.TakeScreenShot(TestName);
+        FileHelper.writeToFile("Test "+ TestName +"Passed");
+    }
+
+    @Test
+    public void SeeOnTheMapCLickOnCLuster(){
+        TestName = "SearchPage_SeeOnTheMapCLickOnCLuster";
+        FileHelper.writeToFile("Start test: "+ TestName);
+        FastSearchPage fastSearchPage = new FastSearchPage(driver);
+        fastSearchPage.selectEstate("Mieszkania");
+        fastSearchPage.inputLocation("Szczecin");
+        fastSearchPage.selectTransaction("Na wynajem");
+        ScreenShotHelper.TakeScreenShot(TestName);
+        fastSearchPage.clickButton();
+        TestHelpers.sleep(2);
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        searchResultPage.seeMap();
+        TestHelpers.sleep(2);
+        assertThat(searchResultPage.isMapDisplayed()).isTrue();
+        ScreenShotHelper.TakeScreenShot(TestName);
+        searchResultPage.clickOnFirstCLuster();
+        searchResultPage.closeMap();
+        assertThat(searchResultPage.isMapClosed()).isTrue();
+        FileHelper.writeToFile("Test "+ TestName +"Passed");
     }
 
     @After
@@ -49,7 +71,5 @@ public class SearchPageTests {
         FileHelper.closeWriter();
         driver.quit();
     }
-
-
 
 }

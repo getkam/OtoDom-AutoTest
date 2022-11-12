@@ -35,13 +35,6 @@ public class FastSearchPage {
 
     }
 
-    public void selectTransaction(String transaction){
-        TestHelpers.clickOnElement(fastSearchLocators.getTransactionType());
-        wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getTransactionDropDownBox()));
-        TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getTransactionDropDownBox(), transaction);
-        FileHelper.writeToFile("Selected transaction type: "+ transaction);
-    }
-
     public void inputLocation(String location){
         TestHelpers.clickOnElement(fastSearchLocators.getLocation());
         wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getLocationPicker()));
@@ -54,6 +47,13 @@ public class FastSearchPage {
     public void selectDistanceRadius (String distanceRadius){
         TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getDistanceRadius(), distanceRadius);
         FileHelper.writeToFile("Selected distance Radius: "+ distanceRadius);
+    }
+
+    public void selectTransaction(String transaction){
+        TestHelpers.clickOnElement(fastSearchLocators.getTransactionType());
+        wait.until(ExpectedConditions.visibilityOf(fastSearchLocators.getTransactionDropDownBox()));
+        TestHelpers.selectByTextFromReactDropdown(driver, fastSearchLocators.getTransactionDropDownBox(), transaction);
+        FileHelper.writeToFile("Selected transaction type: "+ transaction);
     }
 
     public void inputPriceMin(String priceMin){
