@@ -7,7 +7,6 @@ import java.util.List;
 
 public class SearchResultLocators {
 
-
     @FindBy(xpath = "//*[@data-cy='close-modal']")
     private WebElement closeModal;
     public WebElement getCloseModal() {
@@ -18,13 +17,13 @@ public class SearchResultLocators {
     }
 
     @FindBy(xpath = "//*[@data-cy='listing-item-link']")
-    private List<WebElement> listeningItems;
+    private List<WebElement> listingItems;
 
-    public List<WebElement> getListeningItems() {
-        return listeningItems;
+    public List<WebElement> getListingItems() {
+        return listingItems;
     }
-    public void setListeningItems(List<WebElement> listeningItems) {
-        this.listeningItems = listeningItems;
+    public void setListingItems(List<WebElement> listingItems) {
+        this.listingItems = listingItems;
     }
 
     @FindBy(xpath = "//*[@data-cy='search.listing-panel.go-to-map-button-listingPanel']")
@@ -66,7 +65,6 @@ public class SearchResultLocators {
     public void setListOfClusters(List<WebElement> listOfClusters) {
         this.listOfClusters = listOfClusters;
     }
-
 
 }
 

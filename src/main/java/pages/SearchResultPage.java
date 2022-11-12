@@ -24,9 +24,6 @@ public class SearchResultPage {
         PageFactory.initElements(driver,searchResultLocators);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10),Duration.ofSeconds(2));
     }
-
-
-
     public void closeModal(){
         wait.equals(ExpectedConditions.elementToBeClickable(searchResultLocators.getCloseModal()));
         try {
@@ -36,18 +33,15 @@ public class SearchResultPage {
             FileHelper.writeToFile("No modal window displayed");
         }
     }
-
-    public int getNumberOfListeningItems(){
-        return searchResultLocators.getListeningItems().size();
+    public int getNumberOfListingItems(){
+        return searchResultLocators.getListingItems().size();
     }
-
     public void seeMap() {
         TestHelpers.clickOnElement(searchResultLocators.getSeeMap());
     }
     public void closeMap() {
         TestHelpers.clickOnElement(searchResultLocators.getCloseMap());
     }
-
     public void clickOnFirstCLuster() {
         wait.until(ExpectedConditions.visibilityOf(searchResultLocators.getListOfClusters().get(0)));
         TestHelpers.clickOnElement(searchResultLocators.getListOfClusters().get(0));
@@ -58,8 +52,7 @@ public class SearchResultPage {
        if (searchResultLocators.getMap().isDisplayed()) {return true;} else return false;
     }
     public boolean isMapClosed(){
-        wait.until(ExpectedConditions.visibilityOfAllElements(searchResultLocators.getListeningItems()));
-        if (searchResultLocators.getListeningItems().size()!=0) {return true;} else return false;
+        wait.until(ExpectedConditions.visibilityOfAllElements(searchResultLocators.getListingItems()));
+        if (searchResultLocators.getListingItems().size()!=0) {return true;} else return false;
     }
-
 }

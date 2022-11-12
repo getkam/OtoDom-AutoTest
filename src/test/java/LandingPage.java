@@ -20,6 +20,7 @@ public class LandingPage {
 
     WebDriver driver;
     WebDriverWait wait;
+    String TestName;
 
     @Before
     public void setUp(){
@@ -34,32 +35,10 @@ public class LandingPage {
         basePage.closeCookies(driver);
 
     }
-
     @Test
-    public void TC0001(){
-        FileHelper.writeToFile("Start TC0001");
-        FastSearchPage fastSearchPage = new FastSearchPage(driver);
-        fastSearchPage.selectEstate("Domy");
-        fastSearchPage.inputLocation("Rembertów");
-        fastSearchPage.selectTransaction("Na sprzedaż");
-        //fastSearchPage.selectDistanceRadius("10 km");
-        fastSearchPage.inputPriceMax("1400000");
-        fastSearchPage.inputPriceMin("900000");
-        fastSearchPage.inputAreaMax("300");
-        fastSearchPage.inputAreaMin("120");
-        ScreenShotHelper.TakeScreenShot("TC0001");
-        fastSearchPage.clickButton();
-        TestHelpers.sleep(2);
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
-        searchResultPage.closeModal();
-        ScreenShotHelper.TakeScreenShot("TC0001");
-        assertThat(searchResultPage.getNumberOfListeningItems()).isEqualTo(fastSearchPage.getNumberOfSearchItems());
-        FileHelper.writeToFile("Test TC0001 Passed");
-    }
-
-    @Test
-    public void TC0002(){
-        FileHelper.writeToFile("Start TC0002");
+    public void SimpleSearch(){
+        TestName = "SimpleSearch";
+        FileHelper.writeToFile("Start test: "+ TestName);
         FastSearchPage fastSearchPage = new FastSearchPage(driver);
         BasePage basePage = new BasePage(driver);
         fastSearchPage.selectEstate("Domy");
@@ -74,19 +53,45 @@ public class LandingPage {
     }
 
     @Test
-    public void TC0003(){
-        FileHelper.writeToFile("Start TC0003");
-        BasePage basePage = new BasePage(driver);
-        basePage.selectItemFromNavBarAds(NavBarAdsItems.APARTAMENTS_FOR_RENT);
-        assertThat(basePage.getPageTitle()).contains("Mieszkania na wynajem - www.otodom.pl");
+    public void FastSearchNumberOfFoundItems(){
+        TestName = "FastSearchNumberOfFoundItems";
+        FileHelper.writeToFile("Start test: "+ TestName);
+        FastSearchPage fastSearchPage = new FastSearchPage(driver);
+        fastSearchPage.selectEstate("Domy");
+        fastSearchPage.inputLocation("Rembertów");
+        fastSearchPage.selectTransaction("Na sprzedaż");
+        fastSearchPage.inputPriceMax("1400000");
+        fastSearchPage.inputPriceMin("900000");
+        fastSearchPage.inputAreaMax("300");
+        fastSearchPage.inputAreaMin("120");
+        ScreenShotHelper.TakeScreenShot(TestName);
+        fastSearchPage.clickButton();
+        TestHelpers.sleep(2);
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        searchResultPage.closeModal();
+        ScreenShotHelper.TakeScreenShot(TestName);
+        assertThat(searchResultPage.getNumberOfListingItems()).isEqualTo(fastSearchPage.getNumberOfSearchItems());
+        FileHelper.writeToFile("Test "+ TestName +"Passed");
     }
 
     @Test
-    public void TC0004(){
-        FileHelper.writeToFile("Start TC0004");
+    public void NavigationBarApartForSale(){
+        TestName = "NavigationBarApartForSale";
+        FileHelper.writeToFile("Start test: "+ TestName);
+        BasePage basePage = new BasePage(driver);
+        basePage.selectItemFromNavBarAds(NavBarAdsItems.APARTAMENTS_FOR_RENT);
+        assertThat(basePage.getPageTitle()).contains("Mieszkania na wynajem - www.otodom.pl");
+        FileHelper.writeToFile("Test "+ TestName +"Passed");
+    }
+
+    @Test
+    public void NavigationBarTopDevelopers(){
+        TestName = "NavigationBarTopDevelopers";
+        FileHelper.writeToFile("Start test: "+ TestName);
         BasePage basePage = new BasePage(driver);
         basePage.selectItemFromNavBarPrimaryMarkets(NavBarPrimaryMarketItems.TOP_DEVELOPERS);
         assertThat(basePage.getPageTitle()).contains("Rynek pierwotny nieruchomości w Polsce");
+        FileHelper.writeToFile("Test "+ TestName +"Passed");
     }
 
     @After
